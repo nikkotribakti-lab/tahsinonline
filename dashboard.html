@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Peserta | Tahsin Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .hidden-content { display: none; }
+        .tab-active { background-color: #059669 !important; color: white !important; font-weight: 700; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="min-h-screen flex flex-col md:flex-row">
+        
+        <aside class="w-full md:w-64 bg-slate-900 text-white p-6 shrink-0 flex flex-col border-r border-slate-800">
+            <div class="text-2xl font-extrabold mb-10 text-emerald-500 tracking-tight">
+                Tahsin<span class="text-white">Online</span>
+            </div>
+            <nav class="space-y-2 flex-grow">
+                <button onclick="switchTab('tab-dashboard')" id="btn-dashboard" class="w-full text-left py-3 px-4 rounded-xl tab-active transition">Dashboard</button>
+                <button onclick="switchTab('tab-kurikulum')" id="btn-kurikulum" class="w-full text-left py-3 px-4 rounded-xl hover:bg-slate-800 text-slate-400 transition font-semibold">Kurikulum</button>
+                <button onclick="switchTab('tab-jadwal')" id="btn-jadwal" class="w-full text-left py-3 px-4 rounded-xl hover:bg-slate-800 text-slate-400 transition font-semibold">Jadwal Kelas</button>
+                
+                <div class="pt-10 border-t border-slate-800 mt-10">
+                    <button onclick="logout()" class="w-full text-left py-3 px-4 rounded-xl hover:bg-red-900/30 text-red-400 transition text-sm font-bold">Logout / Keluar</button>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="flex-1 p-6 md:p-10 overflow-y-auto h-screen custom-scrollbar">
+            
+            <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+                <div>
+                    <h1 id="user-welcome" class="text-3xl font-extrabold text-slate-900 leading-tight">Ahlan, Peserta!</h1>
+                    <p class="text-slate-500 text-sm">Semua modul telah terbuka. Pilih materi belajar Anda.</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span id="user-badge" class="bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest border border-emerald-200">PAKET REGULER</span>
+                </div>
+            </header>
+
+            <div id="tab-dashboard" class="tab-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
+                        <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">Evaluasi Terakhir</p>
+                        <h3 class="text-3xl font-black text-emerald-600" id="last-score-display">0%</h3>
+                        <p class="text-xs text-slate-400 mt-1 italic">*Skor kuis terakhir Anda</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
+                        <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">Total Materi</p>
+                        <h3 class="text-3xl font-black text-slate-800">8 <span class="text-sm font-normal text-slate-400">Modul</span></h3>
+                    </div>
+                </div>
+
+                <h2 class="text-xl font-extrabold mb-6 flex items-center gap-2">
+                    <span class="w-2 h-6 bg-emerald-500 rounded-full"></span>
+                    Modul & Video Pembelajaran
+                </h2>
+                
+                <div id="modules-container" class="grid gap-4">
+                    </div>
+            </div>
+
+  <div id="tab-kurikulum" class="tab-content hidden-content">
+                <h2 class="text-2xl font-extrabold mb-8 text-slate-900">Target Materi Pekanan</h2>
+                <div class="grid gap-6">
+                    <div class="bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm">
+                        <div class="bg-emerald-600 px-6 py-3 flex justify-between items-center"><span class="text-white font-bold text-xs tracking-widest uppercase">Pekan 01</span><span class="bg-emerald-500 text-white text-[10px] px-2 py-1 rounded-lg font-bold">PONDASI</span></div>
+                        <div class="p-6"><h4 class="font-black text-slate-800 text-lg mb-2">Pengantar & Adab Tilawah</h4><p class="text-sm text-slate-600 leading-relaxed italic">✓ Urgensi Tajwid, Sanad keilmuan, dan latihan Isti'adzah.</p></div>
+                    </div>
+                    <div class="bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm">
+                        <div class="bg-slate-800 px-6 py-3 flex justify-between items-center"><span class="text-white font-bold text-xs tracking-widest uppercase">Pekan 02</span><span class="bg-slate-700 text-white text-[10px] px-2 py-1 rounded-lg font-bold">MAKHRAJ I</span></div>
+                        <div class="p-6"><h4 class="font-black text-slate-800 text-lg mb-2">Makharijul Huruf: Al-Halq</h4><p class="text-sm text-slate-600 leading-relaxed italic">• Pangkal (Hamzah, Ha'), Tengah (Ain, Ha), Ujung (Ghain, Kha).</p></div>
+                    </div>
+                    <div class="bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm">
+                        <div class="bg-slate-800 px-6 py-3 flex justify-between items-center"><span class="text-white font-bold text-xs tracking-widest uppercase">Pekan 03</span><span class="bg-slate-700 text-white text-[10px] px-2 py-1 rounded-lg font-bold">MAKHRAJ II</span></div>
+                        <div class="p-6"><h4 class="font-black text-slate-800 text-lg mb-2">Makharijul Huruf: Al-Lisan Dasar</h4><p class="text-sm text-slate-600 leading-relaxed italic">• Pangkal Lidah (Qaf, Kaf), Tengah Lidah (Jim, Syin, Ya).</p></div>
+                    </div>
+                    <div class="bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm border-b-4 border-emerald-500">
+                        <div class="bg-slate-800 px-6 py-3 flex justify-between items-center"><span class="text-white font-bold text-xs tracking-widest uppercase">Pekan 04</span><span class="bg-slate-700 text-white text-[10px] px-2 py-1 rounded-lg font-bold">EVALUASI</span></div>
+                        <div class="p-6"><h4 class="font-black text-slate-800 text-lg mb-2 text-emerald-600">Review & Ujian Level 1</h4><p class="text-sm text-slate-600 leading-relaxed italic">Setoran Al-Fatihah mandiri dan ujian kenaikan modul 1-4.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-jadwal" class="tab-content hidden-content">
+                <h2 class="text-2xl font-extrabold mb-6 text-slate-900">Konfirmasi Jadwal Live</h2>
+                <div class="bg-emerald-900 text-white p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h3 class="text-3xl font-black mb-6 leading-tight">Hubungi Ustadz Pembimbing <br>Untuk Bimbingan Live</h3>
+                        <a href="https://wa.me/62895708530704?text=Assalamualaikum%20Ustadz,%20saya%20ingin%20tanya%20jadwal%20live%20tahsin." target="_blank" class="inline-flex items-center bg-[#25D366] text-white px-8 py-4 rounded-2xl font-black hover:bg-[#20ba59] transition shadow-xl gap-2">
+                            Tanya Jadwal via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="quiz-modal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-md z-[100] hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-2xl rounded-[3rem] overflow-hidden shadow-2xl relative">
+            
+            <div id="quiz-header" class="bg-emerald-600 p-6 text-white text-center">
+                <h3 id="quiz-session-title" class="text-xl font-black italic uppercase">KUIS</h3>
+                <div class="w-full bg-emerald-800 h-1.5 mt-4 rounded-full overflow-hidden">
+                    <div id="quiz-progress-fill" class="bg-white h-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div id="quiz-play-area" class="p-8 md:p-12">
+                <div class="mb-2 text-emerald-600 font-bold text-[10px] uppercase tracking-widest">Soal <span id="current-q-num">1</span> / 20</div>
+                <p id="question-text" class="text-xl font-bold text-slate-800 mb-8 leading-relaxed italic">Memuat soal...</p>
+                <div id="answer-options" class="grid gap-3"></div>
+            </div>
+
+            <div id="quiz-result-area" class="p-8 md:p-12 hidden text-center">
+                <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-6">🏆</div>
+                <h3 class="text-2xl font-black text-slate-900 mb-2 italic">Maa Syaa Allah!</h3>
+                <p class="text-slate-500 mb-8 font-medium">Kuis Selesai. Berikut skor pencapaian Anda:</p>
+                <div class="bg-slate-50 rounded-3xl p-8 mb-8 border border-slate-100">
+                    <div class="text-6xl font-black text-emerald-600" id="final-score">0</div>
+                    <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] mt-3">Skor Akhir</div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <button onclick="sendScoreToWA()" class="bg-[#25D366] text-white py-4 rounded-2xl font-bold hover:shadow-lg transition">Kirim ke Ustadz</button>
+                    <button onclick="restartQuiz()" class="bg-slate-100 text-slate-700 py-4 rounded-2xl font-bold hover:bg-slate-200 transition">Ulangi Kuis</button>
+                </div>
+                <button onclick="closeQuiz()" class="mt-8 text-slate-400 font-bold text-xs uppercase underline">Tutup Dashboard</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- DATABASE SOAL 160 SOAL (Sesi 1-8) ---
+        const quizMasterData = {
+            sesi1: [
+                { q: "Hukum mempelajari teori Ilmu Tajwid bagi setiap Muslim adalah?", a: ["Fardhu 'Ain", "Fardhu Kifayah", "Sunnah", "Mubah"], correct: 1 },
+                { q: "Mempraktekkan Tajwid saat membaca Al-Qur'an hukumnya?", a: ["Wajib / Fardhu 'Ain", "Sunnah", "Mubah", "Makruh"], correct: 0 },
+                { q: "Arti 'Tajwid' secara bahasa adalah?", a: ["Mengeraskan", "Melagukan", "Membaguskan", "Menghafal"], correct: 2 },
+                { q: "Tujuan utama Ilmu Tajwid adalah menghindari 'Lahn'. Apa itu Lahn?", a: ["Kemerduan", "Kesalahan bacaan", "Kecepatan", "Irama"], correct: 1 },
+                { q: "Kesalahan fatal yang merubah makna atau struktur kata disebut?", a: ["Lahn Khafi", "Lahn Jali", "Idgham", "Ikhfa"], correct: 1 },
+                { q: "Kesalahan ringan seperti kurang panjang Mad disebut?", a: ["Lahn Jali", "Lahn Khafi", "Saktah", "Iqlab"], correct: 1 },
+                { q: "Membaca Al-Qur'an dengan tenang dan sesuai kaidah disebut?", a: ["Tartil", "Hadr", "Tadwir", "Tahqiq"], correct: 0 },
+                { q: "Siapa peletak dasar teori Ilmu Tajwid dari kalangan Ulama?", a: ["Imam Syafi'i", "Al-Khalil bin Ahmad", "Imam Bukhari", "Imam Malik"], correct: 1 },
+                { q: "Rukun bacaan yang benar salah satunya sesuai dengan?", a: ["Syi'ir Arab", "Rasm Utsmani", "Bahasa Indonesia", "Logika"], correct: 1 },
+                { q: "Membaca Isti'adzah hukumnya adalah?", a: ["Wajib", "Haram", "Sunnah Muakkad", "Makruh"], correct: 2 },
+                { q: "Lafadz Isti'adzah bertujuan untuk?", a: ["Memuji Allah", "Meminta perlindungan dari setan", "Memulai doa", "Menghias suara"], correct: 1 },
+                { q: "Hukum membaca Basmalah di awal surah (kecuali At-Taubah) adalah?", a: ["Haram", "Mubah", "Sunnah Muakkad", "Makruh"], correct: 2 },
+                { q: "Surah yang tidak diawali Basmalah adalah?", a: ["Al-Fatihah", "Al-Baqarah", "At-Taubah", "Yasin"], correct: 2 },
+                { q: "Sifat huruf termasuk dalam pembahasan Ilmu?", a: ["Fiqih", "Tajwid", "Tauhid", "Hadits"], correct: 1 },
+                { q: "Makhraj secara bahasa berarti?", a: ["Tempat henti", "Tempat keluar", "Tempat masuk", "Tempat kembali"], correct: 1 },
+                { q: "Berapa jumlah makhraj umum (utama)?", a: ["3", "4", "5", "7"], correct: 2 },
+                { q: "Al-Jauf artinya makhraj bagian?", a: ["Tenggorokan", "Rongga Mulut", "Lidah", "Bibir"], correct: 1 },
+                { q: "Manusia terbaik menurut Rasulullah adalah yang belajar Al-Qur'an dan?", a: ["Menghafalnya", "Menjualnya", "Mengajarkannya", "Menyimpannya"], correct: 2 },
+                { q: "Al-Qur'an diturunkan dengan dialek suku?", a: ["Tamim", "Quraisy", "Khazraj", "Aus"], correct: 1 },
+                { q: "Ilmu Tajwid menjaga lisan agar tidak berdosa saat membaca?", a: ["Kalamullah", "Puisi", "Hadits", "Cerita"], correct: 0 }
+            ],
+            sesi2: [
+                { q: "Al-Halq artinya makhraj bagian?", a: ["Bibir", "Lidah", "Tenggorokan", "Hidung"], correct: 2 },
+                { q: "Berapa jumlah huruf Al-Halq?", a: ["4", "5", "6", "8"], correct: 2 },
+                { q: "Aqshal Halq artinya?", a: ["Ujung Tenggorokan", "Tengah Tenggorokan", "Pangkal Tenggorokan", "Rongga"], correct: 2 },
+                { q: "Huruf yang keluar dari Aqshal Halq (Pangkal) adalah?", a: ["ع - ح", "غ - خ", "ء - هـ", "ق - ك"], correct: 2 },
+                { q: "Wasthul Halq artinya?", a: ["Pangkal", "Tengah Tenggorokan", "Ujung", "Bawah"], correct: 1 },
+                { q: "Huruf yang keluar dari Wasthul Halq (Tengah) adalah?", a: ["ء - هـ", "ع - ح", "غ - خ", "م - ن"], correct: 1 },
+                { q: "Adnal Halq artinya?", a: ["Pangkal", "Tengah", "Ujung Tenggorokan", "Dada"], correct: 2 },
+                { q: "Huruf yang keluar dari Adnal Halq (Ujung) adalah?", a: ["ء - هـ", "ع - ح", "غ - خ", "ل - ر"], correct: 2 },
+                { q: "Huruf 'Ain (ع) keluar dari?", a: ["Pangkal Tenggorokan", "Tengah Tenggorokan", "Ujung Tenggorokan", "Lidah"], correct: 1 },
+                { q: "Huruf Kha (خ) keluar dari?", a: ["Aqshal Halq", "Wasthul Halq", "Adnal Halq", "Syafah"], correct: 2 },
+                { q: "Suara yang terkesan 'serak/ngorok' adalah ciri huruf?", a: ["Ain", "Ha", "Kha", "Hamzah"], correct: 2 },
+                { q: "Huruf Hamzah (ء) bersifat tebal atau tipis?", a: ["Selalu Tebal", "Selalu Tipis", "Bisa keduanya", "Tergantung ayat"], correct: 1 },
+                { q: "Makhraj tenggorokan terbagi menjadi berapa titik?", a: ["2", "3", "4", "5"], correct: 1 },
+                { q: "Huruf Ha (ح) harus dibaca bersih dan?", a: ["Mendengung", "Pedas/Tajam", "Berat", "Ngorok"], correct: 1 },
+                { q: "Pangkal tenggorokan terletak di dekat?", a: ["Pita Suara", "Katup Jakun", "Langit-langit", "Anak Tekak"], correct: 0 },
+                { q: "Huruf Ghain (غ) memiliki kemiripan makhraj dengan?", a: ["Ain", "Kha", "Qaf", "Ha"], correct: 1 },
+                { q: "Ujung tenggorokan adalah bagian yang paling dekat dengan?", a: ["Dada", "Lidah", "Hidung", "Bibir"], correct: 1 },
+                { q: "Huruf Ha' (هـ) sering tertukar makhrajnya dengan?", a: ["Ain", "Ha (ح)", "Ghain", "Kha"], correct: 1 },
+                { q: "Makhraj 'Jauf' menghasilkan huruf?", a: ["Huruf Tenggorokan", "Huruf Mad", "Huruf Bibir", "Huruf Lidah"], correct: 1 },
+                { q: "Saat sukun, huruf Hamzah (ء) dibaca dengan suara yang?", a: ["Membal", "Terputus/Tersumbat", "Mengalir", "Mendengung"], correct: 1 }
+            ],
+            sesi3: [
+                { q: "Al-Lisan artinya adalah makhraj bagian?", a: ["Bibir", "Lidah", "Hidung", "Dada"], correct: 1 },
+                { q: "Huruf Qaf (ق) keluar dari?", a: ["Ujung Lidah", "Pangkal Lidah", "Tengah Lidah", "Samping Lidah"], correct: 1 },
+                { q: "Pangkal lidah bertemu langit-langit lunak (daging) adalah makhraj?", a: ["Kaf", "Qaf", "Jim", "Syin"], correct: 1 },
+                { q: "Huruf Kaf (ك) keluar dari?", a: ["Pangkal lidah sedikit ke depan", "Ujung lidah", "Tengah lidah", "Bibir"], correct: 0 },
+                { q: "Perbedaan utama Qaf dan Kaf adalah?", a: ["Qaf tipis, Kaf tebal", "Qaf tebal, Kaf tipis", "Sama saja", "Hanya bentuk"], correct: 1 },
+                { q: "Tengah lidah bertemu langit-langit adalah makhraj huruf?", a: ["ق - ك", "ج - ش - ي", "ل - ن", "ر - ز"], correct: 1 },
+                { q: "Huruf Jim (ج) dibaca dengan suara yang?", a: ["Mengalir", "Tertahan kuat", "Mendesis", "Ngorok"], correct: 1 },
+                { q: "Huruf Syin (ش) memiliki sifat 'Tafasysyi', artinya?", a: ["Membal", "Bergetar", "Menyebarnya angin", "Mendengung"], correct: 2 },
+                { q: "Huruf Ya (ي) yang keluar dari tengah lidah adalah Ya yang?", a: ["Ya Mati", "Ya Berharakat", "Ya Mad", "Semua Ya"], correct: 1 },
+                { q: "Makhraj Sisi/Tepi Lidah bertemu geraham atas adalah huruf?", a: ["Dhad (ض)", "Shad (ص)", "Lam (ل)", "Ra (ر)"], correct: 0 },
+                { q: "Huruf yang paling sulit makhrajnya menurut para ulama adalah?", a: ["Hamzah", "Ain", "Dhad", "Lam"], correct: 2 },
+                { q: "Makhraj Lam (ل) berada di?", a: ["Pangkal Lidah", "Tengah Lidah", "Ujung Tepi Lidah", "Bawah Lidah"], correct: 2 },
+                { q: "Huruf Nun (ن) keluar dari?", a: ["Tengah Lidah", "Ujung Lidah di bawah Lam", "Bibir", "Tenggorokan"], correct: 1 },
+                { q: "Huruf Ra (ر) keluar dari?", a: ["Ujung Lidah dekat Nun", "Tengah Lidah", "Pangkal Lidah", "Gigi Seri"], correct: 0 },
+                { q: "Sifat khas huruf Ra (ر) adalah Takrir, artinya?", a: ["Mendesis", "Bergetar", "Membal", "Tebal"], correct: 1 },
+                { q: "Berapa jumlah huruf yang keluar dari Al-Lisan?", a: ["10", "15", "18", "20"], correct: 2 },
+                { q: "Huruf Kaf (ك) saat sukun memiliki desis tipis yang disebut?", a: ["Qalqalah", "Hams", "Jahr", "Isti'la"], correct: 1 },
+                { q: "Huruf Jim (ج) saat sukun memiliki sifat membal yang disebut?", a: ["Ghunnah", "Qalqalah", "Hams", "Saktah"], correct: 1 },
+                { q: "Huruf Ya (ي) tidak boleh dibaca dengan suara?", a: ["Tipis", "Hidung (Bindeng)", "Jelas", "Mengalir"], correct: 1 },
+                { q: "Langit-langit mulut dalam bahasa tajwid disebut?", a: ["Al-Hanak", "Al-Lisan", "Al-Halq", "Al-Jauf"], correct: 0 }
+            ],
+            sesi4: [
+                { q: "Ujung lidah bertemu pangkal gigi seri atas adalah makhraj huruf?", a: ["ت - د - ط", "ث - ذ - ظ", "س - ز - ص", "ف - b - m"], correct: 0 },
+                { q: "Huruf Tha (ط) dibaca dengan keadaan pangkal lidah?", a: ["Turun/Tipis", "Naik/Tebal", "Biasa", "Miring"], correct: 1 },
+                { q: "Ujung lidah bertemu ujung gigi seri atas adalah makhraj huruf?", a: ["ت - د - ط", "ث - ذ - ظ", "س - ز - ص", "l - n - r"], correct: 1 },
+                { q: "Huruf Tsa (ث) dibaca dengan suara yang?", a: ["Kuat", "Lembut dan berdesis", "Membal", "Mendengung"], correct: 1 },
+                { q: "Huruf Dzal (ذ) bersifat?", a: ["Tebal", "Tipis", "Sama dengan Zha", "Keras"], correct: 1 },
+                { q: "Huruf Zha (ظ) bersifat?", a: ["Tebal dan naik pangkal lidah", "Tipis", "Mendesis kuat", "Mendengung"], correct: 0 },
+                { q: "Ujung lidah bertemu di atas gigi seri bawah adalah makhraj?", a: ["ث - ذ - ظ", "س - ز - ص", "ت - د - ط", "f - w - b"], correct: 1 },
+                { q: "Huruf Shad (ص) memiliki sifat 'Safir', artinya suara?", a: ["Mendengung", "Seperti siulan/burung", "Bergetar", "Membal"], correct: 1 },
+                { q: "Perbedaan Shad (ص) dan Sin (س) adalah?", a: ["Shad tebal, Sin tipis", "Shad tipis, Sin tebal", "Makhrajnya beda total", "Sama saja"], correct: 0 },
+                { q: "Huruf Zay (ز) memiliki suara desis yang cenderung?", a: ["Lembut", "Kuat/Tajam", "Hilang", "Mendengung"], correct: 1 },
+                { q: "Huruf Dal (د) saat mati/sukun harus dibaca?", a: ["Mendengung", "Membal (Qalqalah)", "Mendesis", "Samar"], correct: 1 },
+                { q: "Huruf Ta (ت) memiliki sifat Hams, artinya ada udara yang?", a: ["Tertahan", "Keluar/Berhembus", "Dibuang", "Masuk"], correct: 1 },
+                { q: "Huruf Tha (ط) adalah huruf yang paling?", a: ["Lemah", "Kuat/Tebal", "Tipis", "Ringan"], correct: 1 },
+                { q: "Salah satu kesalahan pada huruf Tsa (ث) adalah membacanya seperti?", a: ["Sin (س)", "Tsa tebal", "Ta", "Dzal"], correct: 0 },
+                { q: "Saat mengucap Dzal (ذ), posisi lidah tidak boleh?", a: ["Keluar sedikit", "Terlampau masuk", "Menyentuh gigi", "Diam"], correct: 1 },
+                { q: "Huruf Shad, Zay, dan Sin disebut huruf?", a: ["Asaliyah", "Nath'iyah", "Litsawiyah", "Syafawiyah"], correct: 0 },
+                { q: "Huruf Ta, Dal, dan Tha disebut huruf?", a: ["Asaliyah", "Nath'iyah", "Litsawiyah", "Halqiyah"], correct: 1 },
+                { q: "Huruf Tsa, Dzal, dan Zha disebut huruf?", a: ["Asaliyah", "Nath'iyah", "Litsawiyah", "Jaufiyah"], correct: 2 },
+                { q: "Qalqalah pada huruf Tha (ط) lebih kuat dibanding huruf?", a: ["Qaf", "Dal", "Ba", "Semua benar"], correct: 3 },
+                { q: "Kesalahan umum pada huruf Sin (س) adalah?", a: ["Kurang desis", "Terlalu tebal", "Tertukar Shad", "Semua benar"], correct: 3 }
+            ],
+            sesi5: [
+                { q: "Asy-Syafatain artinya makhraj bagian?", a: ["Lidah", "Bibir", "Hidung", "Rongga"], correct: 1 },
+                { q: "Bibir bawah bertemu ujung gigi seri atas adalah makhraj?", a: ["Wawu (و)", "Fa (ف)", "Ba (ب)", "Mim (م)"], correct: 1 },
+                { q: "Makhraj huruf Fa (ف) harus disertai?", a: ["Aliran udara (Hams)", "Dengung", "Pantulan", "Getaran"], correct: 0 },
+                { q: "Makhraj Wawu (و) yang bukan Mad adalah dengan cara?", a: ["Merapatkan bibir", "Memonyongkan bibir", "Membuka mulut lebar", "Menarik lidah"], correct: 1 },
+                { q: "Pertemuan dua bibir secara rapat adalah makhraj?", a: ["Fa", "Ba dan Mim", "Wawu", "Lam"], correct: 1 },
+                { q: "Perbedaan makhraj Ba (ب) dan Mim (م) adalah?", a: ["Ba lebih kuat merapat", "Mim lebih kuat merapat", "Ba ada dengung", "Sama saja"], correct: 0 },
+                { q: "Huruf Mim (م) memiliki sifat asli yang keluar dari hidung, yaitu?", a: ["Qalqalah", "Ghunnah", "Safir", "Hams"], correct: 1 },
+                { q: "Al-Khaisyum artinya makhraj bagian?", a: ["Bibir", "Rongga Mulut", "Pangkal Hidung", "Tenggorokan"], correct: 2 },
+                { q: "Bunyi Ghunnah (dengung) hanya ada pada huruf?", a: ["Lam dan Ra", "Mim dan Nun", "Wawu dan Ya", "Ba dan Ta"], correct: 1 },
+                { q: "Saat mengucapkan Ba (ب) sukun, terjadi?", a: ["Ghunnah", "Qalqalah", "Saktah", "Ikhfa"], correct: 1 },
+                { q: "Berapa jumlah huruf Syafawiyah (bibir)?", a: ["2", "3", "4", "5"], correct: 2 },
+                { q: "Huruf Wawu (و) keluar dengan cara membulatkan kedua bibir, kecuali jika?", a: ["Berharakat Fathah", "Berharakat Kasrah", "Wawu Mad", "Wawu Tasydid"], correct: 2 },
+                { q: "Makhraj Al-Jauf (Rongga) adalah tempat keluarnya?", a: ["Huruf Mad", "Huruf Dengung", "Huruf Bibir", "Huruf Serak"], correct: 0 },
+                { q: "Alif, Wawu Mad, dan Ya Mad disebut huruf?", a: ["Jaufiyah", "Halqiyah", "Syafawiyah", "Lisaniyah"], correct: 0 },
+                { q: "Panjang huruf Mad asli (Thabi'i) adalah?", a: ["1 Harakat", "2 Harakat", "4 Harakat", "6 Harakat"], correct: 1 },
+                { q: "Kesalahan pada huruf Fa (ف) seringkali berubah menjadi suara?", a: ["P (Indonesia)", "V (Inggris)", "B", "W"], correct: 0 },
+                { q: "Ghunnah dalam tajwid diukur dengan?", a: ["1 Alif", "2 Harakat (ayunan)", "4 Harakat", "6 Harakat"], correct: 1 },
+                { q: "Makhraj Khaisyum (hidung) digunakan saat membaca?", a: ["Ikhfa dan Idgham Bighunnah", "Izhar", "Qalqalah", "Mad"], correct: 0 },
+                { q: "Bentuk bibir saat Mim sukun (Ikhfa Syafawi) adalah?", a: ["Rapat kuat", "Rapat ringan (pudar)", "Terbuka lebar", "Monyong"], correct: 1 },
+                { q: "Huruf Ba (ب) termasuk huruf Syiddah, artinya suara?", a: ["Mengalir", "Tertahan", "Bergetar", "Samar"], correct: 1 }
+            ],
+            sesi6: [
+                { q: "Sifatul Huruf artinya?", a: ["Tempat keluar huruf", "Karakter/Cara bunyi huruf", "Jumlah huruf", "Panjang huruf"], correct: 1 },
+                { q: "Sifat yang memiliki lawan kata disebut?", a: ["Sifat Lazimah Mutadhaddah", "Sifat Aridhah", "Sifat Khusus", "Sifat Munfariqah"], correct: 0 },
+                { q: "Lawan dari sifat Al-Hams (berhembus) adalah?", a: ["Asy-Syiddah", "Al-Jahr", "Al-Istifal", "Al-Infitah"], correct: 1 },
+                { q: "Huruf Hams terkumpul dalam kalimat?", a: ["فحثه شخص سكت", "جد بكت", "خص ضغط قظ", "قطب جد"], correct: 0 },
+                { q: "Sifat Asy-Syiddah artinya suara?", a: ["Mengalir", "Tertahan", "Sedang", "Lembut"], correct: 1 },
+                { q: "Lawan dari Syiddah (tertahan) adalah?", a: ["Rikhawah", "Jahr", "Hams", "Tawassuth"], correct: 0 },
+                { q: "Sifat di antara Syiddah dan Rikhawah disebut?", a: ["Qalqalah", "Tawassuth / Bayniyah", "Ghunnah", "Saktah"], correct: 1 },
+                { q: "Huruf Isti'la (terangkat pangkal lidah) adalah huruf yang?", a: ["Tebal", "Tipis", "Samar", "Panjang"], correct: 0 },
+                { q: "Huruf Isti'la terkumpul dalam kalimat?", a: ["خص ضغط قظ", "لن عمر", "قطب جد", "يرملون"], correct: 0 },
+                { q: "Lawan dari Isti'la (Tebal) adalah?", a: ["Istifal (Tipis)", "Infitah", "Idzlaq", "Ismat"], correct: 0 },
+                { q: "Sifat Al-Ithbaq artinya?", a: ["Lidah menempel langit-langit", "Lidah di bawah", "Lidah bergetar", "Suara mendengung"], correct: 0 },
+                { q: "Huruf Ithbaq (paling tebal) adalah?", a: ["ص - ض - ط - ظ", "ق - خ - غ", "ل - ن - r", "a - w - y"], correct: 0 },
+                { q: "Qalqalah artinya?", a: ["Dengung", "Pantulan suara", "Getaran lidah", "Suara siulan"], correct: 1 },
+                { q: "Huruf Qalqalah adalah?", a: ["قطب جد", "خص ضغط", "يرملون", "aoy"], correct: 0 },
+                { q: "Qalqalah Kubra terjadi jika huruf Qalqalah?", a: ["Di tengah kata", "Di akhir karena waqaf", "Di awal kata", "Berharakat Fathah"], correct: 1 },
+                { q: "Sifat Safir (Siulan) ada pada huruf?", a: ["ص - ز - س", "ق - ط - ب", "l - r", "m - n"], correct: 0 },
+                { q: "Sifat Al-Inhiraf (Miring) ada pada huruf?", a: ["Lam dan Ra", "Mim dan Nun", "Wawu dan Ya", "Hamzah"], correct: 0 },
+                { q: "Sifat Al-Istithalah (Memanjang) hanya dimiliki huruf?", a: ["Dhad (ض)", "Shad (ص)", "Tha (ط)", "Zha (ظ)"], correct: 0 },
+                { q: "Sifat Ghunnah secara sempurna ada pada?", a: ["Mim dan Nun Tasydid", "Semua huruf", "Huruf Mad", "Huruf Halq"], correct: 0 },
+                { q: "Tafkhim artinya?", a: ["Menipiskan", "Menebalkan", "Memanjangkan", "Memantulkan"], correct: 1 }
+            ],
+            sesi7: [
+                { q: "Hukum Nun Mati & Tanwin terbagi menjadi berapa?", a: ["3", "4", "5", "6"], correct: 1 },
+                { q: "Izhar Halqi artinya membaca Nun Mati dengan?", a: ["Jelas tanpa dengung", "Samar", "Dengung", "Membalik suara"], correct: 0 },
+                { q: "Huruf Izhar Halqi adalah?", a: ["Huruf Tenggorokan (6)", "Yarmalun", "Ba", "15 Huruf"], correct: 0 },
+                { q: "Idgham Bighunnah artinya?", a: ["Melebur dengan dengung", "Melebur tanpa dengung", "Jelas", "Memantul"], correct: 0 },
+                { q: "Huruf Idgham Bighunnah adalah?", a: ["ي - ن - م - و", "l - r", "b", "ء - h"], correct: 0 },
+                { q: "Huruf Idgham Bilaghunnah adalah?", a: ["l - r", "y - n", "m - w", "k - q"], correct: 0 },
+                { q: "Iqlab terjadi jika Nun Mati/Tanwin bertemu huruf?", a: ["Ba (ب)", "Mim (م)", "Nun (ن)", "Lam (ل)"], correct: 0 },
+                { q: "Tanda Iqlab dalam Mushaf biasanya ditandai dengan huruf?", a: ["Mim kecil (م)", "Sin kecil", "Wawu kecil", "Alif"], correct: 0 },
+                { q: "Ikhfa Haqiqi artinya?", a: ["Jelas", "Samar dengan dengung", "Melebur", "Membal"], correct: 1 },
+                { q: "Jumlah huruf Ikhfa Haqiqi adalah?", a: ["6", "10", "15", "26"], correct: 2 },
+                { q: "Jika Nun Mati bertemu Qaf (ق), suara ikhfa cenderung?", a: ["Tipis", "Tebal", "Sangat Jelas", "Hilang"], correct: 1 },
+                { q: "Ikhfa Syafawi terjadi jika?", a: ["Mim Mati bertemu Ba", "Nun Mati bertemu Ba", "Mim Mati bertemu Mim", "Tanwin bertemu Lam"], correct: 0 },
+                { q: "Idgham Mimi / Mutamatsilain terjadi jika?", a: ["Mim Mati bertemu Mim", "Mim Mati bertemu Ba", "Nun Mati bertemu Mim", "Tanwin bertemu Tanwin"], correct: 0 },
+                { q: "Izhar Syafawi terjadi jika Mim Mati bertemu?", a: ["Selain Mim dan Ba", "Huruf Ba saja", "Huruf Halq saja", "Huruf Mad"], correct: 0 },
+                { q: "Berapa lama mendengung (Ghunnah) ditahan?", a: ["1 Harakat", "2 Harakat", "4 Harakat", "6 Harakat"], correct: 1 },
+                { q: "Hukum Nun Tasydid dan Mim Tasydid adalah?", a: ["Ghunnah Musyaddadah", "Izhar", "Ikhfa", "Iqlab"], correct: 0 },
+                { q: "Contoh Idgham Bighunnah adalah?", a: ["مَنْ يَقُوْلُ", "مَنْ رَبُّكَ", "مِنْ بَعْدِ", "عَنْهُمْ"], correct: 0 },
+                { q: "Contoh Izhar Halqi adalah?", a: ["مِنْ حَكِيْمٍ", "مِنْ مَالٍ", "أَنْبِئْهُمْ", "فِيْهِمْ"], correct: 0 },
+                { q: "Suara Ikhfa pada huruf Kaf (ك) cenderung?", a: ["Tebal", "Tipis", "Sangat Dengung", "Membal"], correct: 1 },
+                { q: "Idgham Bilaghunnah berfungsi untuk?", a: ["Meringankan bacaan", "Menebalkan", "Memperjelas", "Memperlama"], correct: 0 }
+            ],
+            sesi8: [
+                { q: "Mad secara bahasa artinya?", a: ["Pendek", "Panjang / Tambahan", "Indah", "Cepat"], correct: 1 },
+                { q: "Mad Asli disebut juga Mad?", a: ["Thabi'i", "Far'i", "Lazim", "Wajib"], correct: 0 },
+                { q: "Berapa panjang harakat Mad Thabi'i?", a: ["1", "2", "4", "6"], correct: 1 },
+                { q: "Mad yang terjadi karena bertemu Hamzah dalam satu kata disebut?", a: ["Mad Jaiz Munfasil", "Mad Wajib Muttasil", "Mad Lazim", "Mad Aridh"], correct: 1 },
+                { q: "Panjang Mad Wajib Muttasil adalah?", a: ["2 Harakat", "4-5 Harakat", "6 Harakat", "8 Harakat"], correct: 1 },
+                { q: "Mad Jaiz Munfasil terjadi jika Mad bertemu Hamzah di?", a: ["Lain kata", "Satu kata", "Awal kalimat", "Akhir ayat"], correct: 0 },
+                { q: "Mad Aridh Lissukun terjadi karena?", a: ["Bertemu Hamzah", "Bertemu huruf sukun karena Waqaf", "Bertemu Tasydid", "Bertemu Alif"], correct: 1 },
+                { q: "Panjang Mad Aridh Lissukun boleh dibaca 2, 4, atau?", a: ["5 Harakat", "6 Harakat", "7 Harakat", "8 Harakat"], correct: 1 },
+                { q: "Mad yang terjadi pada Tanwin Fathah di akhir ayat disebut?", a: ["Mad Iwadl", "Mad Badal", "Mad Shilah", "Mad Tamkin"], correct: 0 },
+                { q: "Contoh Mad Badal adalah?", a: ["آدَمَ (Aadama)", "قِيْلَ", "يَقُوْلُ", "السَّمَاءُ"], correct: 0 },
+                { q: "Mad Lazim Kilmi Muthaqqal panjangnya wajib?", a: ["2 Harakat", "4 Harakat", "6 Harakat", "8 Harakat"], correct: 2 },
+                { q: "Mad Lazim Mukhaffaf Harfi ada pada pembukaan surah, contohnya?", a: ["الۤمّۤ", "ن", "ق", "Semua benar"], correct: 3 },
+                { q: "Waqaf artinya?", a: ["Terus", "Berhenti", "Pelan", "Cepat"], correct: 1 },
+                { q: "Tanda waqaf ( م ) artinya?", a: ["Boleh berhenti", "Harus berhenti (Wajib)", "Dilarang berhenti", "Lebih baik terus"], correct: 1 },
+                { q: "Tanda waqaf ( لا ) artinya?", a: ["Harus berhenti", "Dilarang berhenti", "Boleh berhenti", "Lebih baik berhenti"], correct: 1 },
+                { q: "Tanda waqaf ( ج ) artinya?", a: ["Waqaf Jaiz (Boleh berhenti/terus)", "Harus terus", "Harus berhenti", "Saktah"], correct: 0 },
+                { q: "Saktah artinya berhenti sejenak tanpa?", a: ["Melihat", "Mengambil nafas", "Menutup mata", "Bersuara"], correct: 1 },
+                { q: "Berapa jumlah Saktah dalam riwayat Imam Ashim (Hafsh)?", a: ["2", "4", "6", "8"], correct: 1 },
+                { q: "Mad Shilah Qashirah terjadi jika Ha Dhamir bertemu?", a: ["Hamzah", "Selain Hamzah", "Huruf Sukun", "Huruf Tasydid"], correct: 1 },
+                { q: "Mad Lazim Muthaqqal dicirikan dengan adanya tanda?", a: ["Sukun", "Tasydid setelah Mad", "Hamzah", "Tanwin"], correct: 1 }
+            ]
+        };
+
+        // --- LOGIKA UTAMA DASHBOARD ---
+        const modules = [
+            { id: 1, key: "sesi1", t: "Pengantar Tajwid & Adab", y: "https://www.youtube.com/results?search_query=belajar+tajwid+dasar" },
+            { id: 2, key: "sesi2", t: "Makhraj Al-Halq (Tenggorokan)", y: "https://www.youtube.com/results?search_query=makhraj+al+halq" },
+            { id: 3, key: "sesi3", t: "Makhraj Al-Lisan Dasar", y: "https://www.youtube.com/results?search_query=makhraj+al+lisan" },
+            { id: 4, key: "sesi4", t: "Makhraj Al-Lisan Lanjutan", y: "https://www.youtube.com/results?search_query=makhraj+ujung+lidah" },
+            { id: 5, key: "sesi5", t: "Makhraj Bibir & Jauf", y: "https://www.youtube.com/results?search_query=makhraj+bibir" },
+            { id: 6, key: "sesi6", t: "Sifatul Huruf (Karakter Suara)", y: "https://www.youtube.com/results?search_query=sifatul+huruf" },
+            { id: 7, key: "sesi7", t: "Hukum Nun Mati & Tanwin", y: "https://www.youtube.com/results?search_query=hukum+nun+mati" },
+            { id: 8, key: "sesi8", t: "Hukum Mad & Waqaf", y: "https://www.youtube.com/results?search_query=belajar+mad+tahsin" }
+        ];
+
+        let currentSesiKey = "sesi1";
+        let currentQIndex = 0;
+        let score = 0;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const name = localStorage.getItem('userName');
+            if (!name) { window.location.href = 'login.html'; return; }
+            document.getElementById('user-welcome').innerText = `Ahlan, ${name}!`;
+            
+            const lastScore = localStorage.getItem('lastScore') || 0;
+            document.getElementById('last-score-display').innerText = lastScore + "%";
+            
+            renderModules();
+        });
+
+        function renderModules() {
+            const container = document.getElementById('modules-container');
+            container.innerHTML = "";
+            modules.forEach(m => {
+                container.innerHTML += `
+                    <div class="bg-white p-6 rounded-2xl border-l-4 border-emerald-500 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4 transition hover:shadow-md">
+                        <div class="flex items-center gap-5 w-full">
+                            <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center font-black text-xl shrink-0">${String(m.id).padStart(2,'0')}</div>
+                            <h4 class="font-bold text-slate-900">${m.t}</h4>
+                        </div>
+                        <div class="flex gap-2 w-full md:w-auto">
+                            <a href="${m.y}" target="_blank" class="flex-1 md:flex-none text-center bg-slate-100 text-slate-700 px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-slate-200 transition flex items-center justify-center gap-2">🎬 Video</a>
+                            <button onclick="startQuiz('${m.key}')" class="flex-1 md:flex-none bg-emerald-600 text-white px-6 py-2.5 rounded-xl text-xs font-bold hover:bg-emerald-700 shadow-lg transition">📝 Kuis</button>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function startQuiz(key) {
+            currentSesiKey = key;
+            currentQIndex = 0;
+            score = 0;
+            document.getElementById('quiz-modal').classList.remove('hidden');
+            document.getElementById('quiz-play-area').classList.remove('hidden');
+            document.getElementById('quiz-result-area').classList.add('hidden');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const questions = quizMasterData[currentSesiKey];
+            const q = questions[currentQIndex];
+            
+            document.getElementById('quiz-session-title').innerText = `KUIS SESI ${currentSesiKey.replace('sesi', '')}`;
+            document.getElementById('current-q-num').innerText = currentQIndex + 1;
+            document.getElementById('question-text').innerText = q.q;
+            document.getElementById('quiz-progress-fill').style.width = `${(currentQIndex / 20) * 100}%`;
+
+            const optDiv = document.getElementById('answer-options');
+            optDiv.innerHTML = "";
+            q.a.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-4 rounded-2xl border-2 border-slate-100 hover:border-emerald-500 font-semibold transition text-slate-700 active:scale-95";
+                btn.innerText = opt;
+                btn.onclick = () => {
+                    if(idx === q.correct) score += 5;
+                    currentQIndex++;
+                    if(currentQIndex < 20) loadQuestion(); else finishQuiz();
+                };
+                optDiv.appendChild(btn);
+            });
+        }
+
+        function finishQuiz() {
+            document.getElementById('quiz-play-area').classList.add('hidden');
+            document.getElementById('quiz-result-area').classList.remove('hidden');
+            document.getElementById('final-score').innerText = score;
+            document.getElementById('quiz-progress-fill').style.width = "100%";
+            
+            localStorage.setItem('lastScore', score);
+            document.getElementById('last-score-display').innerText = score + "%";
+        }
+
+        function sendScoreToWA() {
+            const name = localStorage.getItem('userName') || "Peserta";
+            const msg = `Laporan Kuis Tahsin: *${name}* - Sesi: *${currentSesiKey.toUpperCase()}* - Skor: *${score}/100*`;
+            window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function restartQuiz() { startQuiz(currentSesiKey); }
+        function closeQuiz() { document.getElementById('quiz-modal').classList.add('hidden'); }
+        
+        function switchTab(id) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.add('hidden-content'));
+            document.getElementById(id).classList.remove('hidden-content');
+            ['btn-dashboard', 'btn-kurikulum', 'btn-jadwal'].forEach(b => {
+                const btn = document.getElementById(b);
+                if(b === `btn-${id.split('-')[1]}`) btn.classList.add('tab-active'); else btn.classList.remove('tab-active');
+            });
+        }
+
+        function logout() { if(confirm("Keluar?")) { localStorage.clear(); window.location.href = 'index.html'; } }
+    </script>
+</body>
+</html>

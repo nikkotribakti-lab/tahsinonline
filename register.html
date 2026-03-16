@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Peserta | Tahsin Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 flex items-center justify-center min-h-screen p-4 font-['Inter']">
+
+    <div class="w-full max-w-lg">
+        <div class="bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden">
+            <div class="bg-emerald-700 p-8 text-white">
+                <h2 class="text-3xl font-bold italic">Formulir Pendaftaran</h2>
+                <p class="text-emerald-100 opacity-90 mt-2">Buat akun Anda untuk mulai belajar Tahsin.</p>
+            </div>
+
+            <div class="p-8">
+                <form action="#" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-1 tracking-wider">Nama Lengkap</label>
+                            <input type="text" placeholder="Fulan bin Fulan" class="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-emerald-500 transition" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-1 tracking-wider">No. WhatsApp</label>
+                            <input type="tel" placeholder="08123456789" class="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-emerald-500 transition" required>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1 tracking-wider">Alamat Email</label>
+                        <input type="email" placeholder="nama@email.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-emerald-500 transition" required>
+                        <p class="text-[10px] text-slate-400 mt-1 italic">*Gunakan email aktif untuk mengakses materi.</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1 tracking-wider">Buat Password</label>
+                        <input type="password" placeholder="••••••••" class="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-emerald-500 transition" required>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1 tracking-wider">Pilih Program</label>
+                        <select class="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-emerald-500 bg-white transition cursor-pointer">
+                            <option value="reguler">Kelas Reguler - Rp 250.000</option>
+                            <option value="privat">Kelas Privat - Rp 750.000</option>
+                        </select>
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit" class="w-full bg-emerald-700 text-white font-bold py-4 rounded-xl hover:bg-emerald-800 transition shadow-lg shadow-emerald-100 transform active:scale-[0.98]">
+                            Daftar Sekarang
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-8 pt-6 border-t border-slate-100 text-center">
+                    <p class="text-sm text-slate-500 font-medium">
+                        Sudah punya akun? <a href="login.html" class="text-emerald-600 font-bold hover:underline">Login di sini</a>
+                    </p>
+                    <div class="mt-4">
+                        <a href="index.html" class="text-xs text-slate-400 hover:text-emerald-700 transition"> 
+                            &larr; Kembali ke Beranda
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script> 
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyfnATos0y3yLosNqcLnPW9n0nSYhHDbbsJ6gjPTobmCeRjcT7QiMBtyPeyZ_L0rc6A/exec';
+const form = document.querySelector('form');
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const formData = new FormData();
+  formData.append('action', 'register');
+  formData.append('nama', form.querySelector('input[placeholder="Fulan bin Fulan"]').value);
+  formData.append('whatsapp', form.querySelector('input[placeholder="08123456789"]').value);
+  formData.append('email', form.querySelector('input[type="email"]').value);
+  formData.append('password', form.querySelector('input[type="password"]').value);
+  formData.append('paket', form.querySelector('select').value);
+
+  fetch(scriptURL, { method: 'POST', body: formData})
+    .then(response => {
+       alert("Pendaftaran Berhasil! Silakan Login.");
+       window.location.href = 'login.html';
+    })
+    .catch(error => console.error('Error!', error.message));
+});
+</script>
+
+</html>

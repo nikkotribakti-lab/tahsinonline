@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tahsin Online | Belajar Al-Qur'an Standar Sanad</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+        .arabic { font-family: 'Amiri', serif; }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at top right, #ecfdf5, transparent),
+                        radial-gradient(circle at bottom left, #f8fafc, transparent);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @media (min-width: 1024px) {
+            .card-hover:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.05);
+            }
+        }
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        #mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="bg-[#FBFDFB] text-slate-900">
+
+    <nav class="glass-nav border-b border-slate-100 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-5 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-9 h-9 bg-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <span class="text-white font-bold text-lg font-serif">T</span>
+                </div>
+                <div class="text-xl font-extrabold tracking-tight text-slate-800">
+                    Tahsin<span class="text-emerald-600 font-medium">Online</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex items-center space-x-8 font-semibold text-sm tracking-wide">
+                <a href="#program" class="text-slate-500 hover:text-emerald-600 transition">PROGRAM</a>
+                <a href="#materi" class="text-slate-500 hover:text-emerald-600 transition">MATERI</a>
+                <a href="#pendaftaran" class="text-slate-500 hover:text-emerald-600 transition">HARGA</a>
+                <a href="https://qurma.netlify.app" target="_blank" class="text-emerald-600 hover:text-emerald-700 transition flex items-center uppercase">
+                    Qurma Portal
+                    <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+                <div class="h-5 w-px bg-slate-200"></div>
+                <a href="login.html" class="text-slate-700 hover:text-emerald-600 transition">MASUK</a>
+                <a href="register.html" class="bg-slate-900 text-white px-6 py-2.5 rounded-full hover:bg-emerald-600 transition shadow-lg active:scale-95 text-center">
+                    MULAI BELAJAR
+                </a>
+            </div>
+
+            <div class="lg:hidden flex items-center">
+                <button onclick="toggleMenu()" class="p-2 bg-slate-100 rounded-xl text-slate-600 active:bg-emerald-50 active:text-emerald-600 transition-all">
+                    <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="absolute top-[73px] left-0 w-full bg-white border-b border-slate-100 p-5 lg:hidden flex flex-col space-y-4 shadow-2xl">
+            <a href="#program" onclick="toggleMenu()" class="text-slate-600 font-bold p-3 rounded-xl hover:bg-slate-50 uppercase text-sm">Program</a>
+            <a href="#materi" onclick="toggleMenu()" class="text-slate-600 font-bold p-3 rounded-xl hover:bg-slate-50 uppercase text-sm">Materi</a>
+            <a href="#pendaftaran" onclick="toggleMenu()" class="text-slate-600 font-bold p-3 rounded-xl hover:bg-slate-50 uppercase text-sm">Harga</a>
+            <a href="https://qurma.netlify.app" target="_blank" class="text-emerald-600 font-bold p-3 rounded-xl bg-emerald-50 uppercase text-sm flex justify-between">
+                Qurma Portal <span>&rarr;</span>
+            </a>
+            <hr class="border-slate-100">
+            <div class="grid grid-cols-2 gap-3">
+                <a href="login.html" class="bg-slate-100 text-slate-700 text-center py-3 rounded-xl font-bold">MASUK</a>
+                <a href="register.html" class="bg-emerald-600 text-white text-center py-3 rounded-xl font-bold">DAFTAR</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative overflow-hidden hero-gradient pt-10 pb-20 md:pt-24 md:pb-32">
+        <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+            <div class="inline-flex items-center space-x-2 bg-emerald-50 border border-emerald-100 px-4 py-2 rounded-full mb-6 md:mb-8">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span class="text-emerald-700 text-[10px] md:text-xs font-bold tracking-widest uppercase text-center">Pendaftaran Angkatan Maret 2026 Dibuka</span>
+            </div>
+            
+            <h1 class="text-4xl md:text-7xl font-extrabold mb-6 md:mb-8 text-slate-900 leading-[1.2] md:leading-[1.1] tracking-tight">
+                Baca Al-Qur'an Lebih <br><span class="text-emerald-600 italic">Indah & Tartil.</span>
+            </h1>
+            <p class="text-base md:text-xl text-slate-500 mb-10 md:mb-12 max-w-2xl mx-auto leading-relaxed px-2">
+                Platform pembelajaran Tahsin nomor satu yang menghubungkan Anda dengan asatidz ahli makhraj secara online.
+            </p>
+            
+            <div class="flex flex-col space-y-4 md:space-y-0 md:flex-row justify-center gap-4">
+                <a href="register.html" class="bg-emerald-600 text-white px-8 py-4 md:py-5 rounded-2xl text-base md:text-lg font-bold hover:bg-emerald-700 shadow-xl shadow-emerald-200 transition-all flex items-center justify-center">
+                    Mulai Belajar Sekarang 
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+                <a href="https://wa.me/62895708530704?text=Assalamualaikum..." target="_blank" class="bg-white border-2 border-slate-100 text-slate-700 px-8 py-4 md:py-5 rounded-2xl text-base md:text-lg font-bold hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5 text-[#25D366]" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp Admin
+                </a>
+            </div>
+
+            <div class="mt-16 md:mt-20 pt-8 border-t border-slate-200/60 max-w-4xl mx-auto flex flex-wrap justify-center items-center gap-6 md:gap-10 opacity-40 grayscale">
+                <span class="text-[10px] font-black tracking-[0.2em]">ISLAMIC UNIVERSITY</span>
+                <span class="text-[10px] font-black tracking-[0.2em]">QURAN ACADEMY</span>
+                <span class="text-[10px] font-black tracking-[0.2em]">ARABIC CENTER</span>
+            </div>
+        </div>
+    </header>
+
+    <section id="program" class="py-20 md:py-32">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12 md:mb-20">
+                <span class="text-emerald-600 font-bold text-[10px] md:text-sm tracking-[0.3em] uppercase">Eksklusivitas</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold mt-3 md:mt-4 mb-4 md:mb-6 leading-tight">Metode Belajar Modern</h2>
+                <div class="h-1.5 w-16 md:w-24 bg-emerald-500 mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
+                <div class="bg-white p-8 md:p-10 rounded-[2rem] border border-slate-100 card-hover shadow-sm">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-6 md:mb-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-extrabold mb-3 md:mb-4">Waktu Fleksibel</h3>
+                    <p class="text-sm md:text-base text-slate-500 leading-relaxed mb-4">Pilih jadwal kelas yang sesuai dengan kesibukan Anda sehari-hari.</p>
+                    <span class="text-emerald-600 font-bold text-xs md:text-sm uppercase tracking-wider">Tersedia 24/7 &rarr;</span>
+                </div>
+
+                <div class="bg-white p-8 md:p-10 rounded-[2.5rem] border-2 border-emerald-600 card-hover shadow-2xl shadow-emerald-100 relative overflow-hidden">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-emerald-600 text-white rounded-2xl flex items-center justify-center mb-6 md:mb-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-extrabold mb-3 md:mb-4">Semi-Privat</h3>
+                    <p class="text-sm md:text-base text-slate-600 leading-relaxed mb-4">Maksimal 10 peserta untuk menjamin setiap bacaan terkoreksi tepat.</p>
+                    <span class="text-emerald-600 font-bold text-xs md:text-sm uppercase tracking-wider italic">Focus on detail &rarr;</span>
+                </div>
+
+                <div class="bg-white p-8 md:p-10 rounded-[2rem] border border-slate-100 card-hover shadow-sm">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-6 md:mb-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-extrabold mb-3 md:mb-4">Kurikulum Belajar</h3>
+                    <p class="text-sm md:text-base text-slate-500 leading-relaxed mb-4">Materi disusun berdasarkan literatur tajwid klasik yang diakui ulama.</p>
+                    <span class="text-emerald-600 font-bold text-xs md:text-sm uppercase tracking-wider">High Standard &rarr;</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="materi" class="py-20 md:py-32 bg-slate-900 text-white relative">
+        <div class="max-w-7xl mx-auto px-6 relative z-10 flex flex-col lg:flex-row items-center gap-16 md:gap-24">
+            <div class="w-full lg:w-1/2">
+                <span class="text-emerald-400 font-bold text-xs md:text-sm tracking-[0.2em] uppercase mb-4 block">Peta Jalan Belajar</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold mb-8 md:mb-10 leading-tight">Kurikulum Terstruktur.</h2>
+                
+                <div class="space-y-4 md:space-y-6">
+                    <div class="flex items-center space-x-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-emerald-500 text-white rounded-xl flex items-center justify-center font-bold text-sm">01</div>
+                        <span class="text-sm md:text-lg font-medium text-slate-200">Makharijul Huruf Dasar</span>
+                    </div>
+                    <div class="flex items-center space-x-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center font-bold text-sm">02</div>
+                        <span class="text-sm md:text-lg font-medium text-slate-200">Karakteristik & Sifat Huruf</span>
+                    </div>
+                    <div class="flex items-center space-x-4 p-4 rounded-2xl bg-white/5 border border-white/10 opacity-80">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center font-bold text-sm">03</div>
+                        <span class="text-sm md:text-lg font-medium text-slate-200">Hukum Nun & Mim Mati</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="w-full lg:w-1/2">
+                <div class="bg-gradient-to-br from-slate-800 to-slate-950 p-10 md:p-16 rounded-[3rem] border border-white/10 text-center">
+                    <p class="arabic text-4xl md:text-6xl mb-8 text-emerald-400 leading-snug">وَرَتِّلِ الْقُرْآنَ تَرْتِيلًا</p>
+                    <p class="text-slate-400 text-sm md:text-lg leading-relaxed italic">"Dan bacalah Al-Qur'an itu dengan perlahan-lahan (tartil)."</p>
+                    <p class="text-emerald-500 font-bold mt-4 uppercase text-[10px] md:text-xs tracking-widest">— QS. AL-MUZZAMMIL: 4</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pendaftaran" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-slate-900 leading-tight">Mulai Perjalanan Anda</h2>
+            <p class="text-slate-500 mb-12 md:mb-20 text-sm md:text-base italic">Investasi terbaik untuk dunia dan akhirat Anda.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-5xl mx-auto">
+                <div class="bg-slate-50 p-8 md:p-12 rounded-[3rem] border border-slate-100 flex flex-col items-center">
+                    <span class="bg-white text-slate-600 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6 border border-slate-200">ANGKATAN BARU</span>
+                    <h4 class="text-2xl font-extrabold mb-2">Kelas Reguler</h4>
+                    <div class="flex items-baseline mb-10">
+                        <span class="text-4xl font-black">Rp 250k</span><span class="text-slate-400 ml-1 text-sm">/bln</span>
+                    </div>
+                    <ul class="space-y-4 mb-10 text-left w-full text-sm">
+                        <li class="flex items-center text-slate-600"><span class="text-emerald-500 mr-3">✓</span> 8x Live Zoom per Bulan</li>
+                        <li class="flex items-center text-slate-600"><span class="text-emerald-500 mr-3">✓</span> Akses Materi Selamanya</li>
+                    </ul>
+                    <a href="register.html" class="w-full bg-slate-900 text-white text-center py-4 rounded-2xl font-bold hover:bg-emerald-600 shadow-xl transition-all">Pilih Paket</a>
+                </div>
+
+                <div class="bg-white p-8 md:p-12 rounded-[3rem] border-2 border-emerald-600 relative overflow-hidden flex flex-col items-center shadow-2xl shadow-emerald-50">
+                    <div class="absolute top-0 right-0 bg-emerald-600 text-white px-6 py-1.5 rounded-bl-2xl font-bold text-[10px]">REKOMENDASI</div>
+                    <span class="bg-emerald-50 text-emerald-700 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6">INTENSIF</span>
+                    <h4 class="text-2xl font-extrabold mb-2">Kelas Privat</h4>
+                    <div class="flex items-baseline mb-10">
+                        <span class="text-4xl font-black text-emerald-600">Rp 750k</span><span class="text-slate-400 ml-1 text-sm">/bln</span>
+                    </div>
+                    <ul class="space-y-4 mb-10 text-left w-full text-sm">
+                        <li class="flex items-center text-slate-600"><span class="text-emerald-500 mr-3">✓</span> 1-on-1 Sesi Intensif</li>
+                        <li class="flex items-center text-slate-600"><span class="text-emerald-500 mr-3">✓</span> Bebas Atur Jadwal Sendiri</li>
+                    </ul>
+                    <a href="register.html" class="w-full bg-emerald-600 text-white text-center py-4 rounded-2xl font-bold hover:bg-emerald-700 shadow-xl shadow-emerald-200 transition-all">Ambil Privat</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-50 border-t border-slate-100 py-16">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="text-xl font-black text-slate-800 mb-8">Tahsin<span class="text-emerald-600">Online</span></div>
+            <p class="text-slate-400 text-xs md:text-sm max-w-md mx-auto leading-relaxed mb-8 px-4">Platform profesional untuk mempelajari Al-Qur'an secara tartil dari manapun Anda berada.</p>
+            
+            <div class="flex justify-center space-x-6 text-[10px] font-black tracking-widest text-slate-400 uppercase">
+                <a href="#" class="hover:text-emerald-600">Youtube</a>
+                <a href="#" class="hover:text-emerald-600">Instagram</a>
+                <a href="#" class="hover:text-emerald-600">Tiktok</a>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-slate-200/50">
+                <p class="text-slate-400 text-[9px] tracking-[0.3em] font-bold uppercase">&copy; 2026 TAHSIN ONLINE. ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger Menu Logic
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            
+            menu.classList.toggle('active');
+            
+            // Change Icon to X when menu is active
+            if (menu.classList.contains('active')) {
+                icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />`;
+            } else {
+                icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />`;
+            }
+        }
+    </script>
+</body>
+</html>
